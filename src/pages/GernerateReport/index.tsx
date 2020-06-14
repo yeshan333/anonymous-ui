@@ -9,6 +9,8 @@ import CalculateScore from './components/CalculateScore';
 import WeightControlTable from './components/WeightControl';
 import NutritionAssessmentTable from './components/NutritionAssessment';
 import EstimateOverweight from './components/EstimateOverweight';
+import ObesityAnalysis from './components/ObesityAnalysis';
+import MuscleBalance from './components/MuscleBalance';
 
 // import styles from './index.less';
 
@@ -89,6 +91,12 @@ export default () => {
       </Row>
       <Card>
         <EstimateOverweight />
+      </Card>
+      <Card>
+        <Row>
+          <Col span={12}><Card><ObesityAnalysis /></Card></Col>
+          <Col span={12}><Card><MuscleBalance /></Card></Col>
+        </Row>
       </Card>
       <Card style={{ textAlign: 'center' }}>
         <h2>敬请期待</h2>

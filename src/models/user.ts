@@ -48,6 +48,7 @@ const UserModel: UserModelType = {
         payload: response,
       });
     },
+    // TODO: 了解如何获取当前用户信息
     *fetchCurrent(_, { call, put }) {
       const response = yield call(queryCurrent);
       yield put({

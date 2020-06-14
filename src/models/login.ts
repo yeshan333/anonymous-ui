@@ -7,7 +7,7 @@ import { getPageQuery } from '@/utils/utils';
 
 export interface StateType {
   status?: 'ok' | 'error';
-  type?: string;
+  type?: string;  // type: account | mobile(手机验证码)
   currentAuthority?: 'user' | 'guest' | 'admin';
 }
 
@@ -38,7 +38,7 @@ const Model: LoginModelType = {
         payload: response,
       });
       // Login successfully
-      if (response.status === 'ok') {  // 注意改回来
+      if (response.status === 'ok') {
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
         let { redirect } = params as { redirect: string };

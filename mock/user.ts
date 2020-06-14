@@ -77,6 +77,9 @@ export default {
       address: 'Sidney No. 1 Lake Park',
     },
   ],
+  'GET /api/login/account': {
+    tips: "Please use POST method"
+  },
   'POST /api/login/account': (req: Request, res: Response) => {
     const { password, userName, type } = req.body;
     if (password === 'ant.design' && userName === 'admin') {

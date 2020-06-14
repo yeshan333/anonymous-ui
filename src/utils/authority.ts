@@ -1,3 +1,7 @@
+/*
+  * 权限获取与权限设置
+*/
+
 import { reloadAuthorized } from './Authorized';
 
 // use localStorage to store the authority info, which might be sent from server in actual project.
