@@ -16,7 +16,7 @@ const proSettings: DefaultSettings = {
   menu: {
     locale: true,
   },
-  title: 'Ant Design Pro',
+  title: '人体成分分析系统',
   pwa: false,
   iconfontUrl: '',
 };

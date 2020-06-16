@@ -14,7 +14,7 @@ export default (): React.ReactNode => (
   <PageHeaderWrapper content=" 这个页面只有 admin 权限才能查看">
     <Card>
       <Typography.Title level={2} style={{ textAlign: 'center' }}>
-        <SmileTwoTone /> Ant Design Pro <HeartTwoTone twoToneColor="#eb2f96" /> You
+        <SmileTwoTone /> 人体成分分析管理系统 <HeartTwoTone twoToneColor="#eb2f96" /> 用户管理
       </Typography.Title>
       <Typography.Paragraph>
         <UsersManagementEditableTable />

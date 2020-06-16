@@ -17,6 +17,13 @@ const BodyCompositionRecordsTable = ({ dispatch, bodycompositionrecords }: any) 
 
   const columns = [
     {
+      title: "ID",
+      width: 100,
+      dataIndex: "ID",
+      key: "ID",
+      fixed: "left"
+    },
+    {
       title: "Full Name",
       width: 100,
       dataIndex: "name",
@@ -31,26 +38,26 @@ const BodyCompositionRecordsTable = ({ dispatch, bodycompositionrecords }: any) 
       fixed: "left"
     },
     {
-      title: "Column 1",
-      dataIndex: "address",
+      title: "Gender",
+      dataIndex: "gender",
       key: "1",
       width: 150
     },
     {
-      title: "Column 2",
-      dataIndex: "address",
+      title: "Test Date",
+      dataIndex: "testdate",
       key: "2",
-      width: 150
+      width: 200
     },
     {
-      title: "Column 3",
-      dataIndex: "address",
+      title: "Weight",
+      dataIndex: "weight",
       key: "3",
-      width: 150
+      width: 90
     },
     {
-      title: "Column 4",
-      dataIndex: "address",
+      title: "Lower Limit(Weight Normal Range)",
+      dataIndex: "Lower_Limit",
       key: "4",
       width: 150
     },

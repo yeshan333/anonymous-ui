@@ -26,7 +26,7 @@ export default (): React.ReactNode => (
       <Button type="primary" onClick={() => history.push('/generate-report')}>生成报告</Button>
       <BodyCompositionRecordsTable />
     </Card>
-    <Card>
+{/*     <Card>
       <Alert
         message="umi ui 现已发布，点击右下角 umi 图标即可使用"
         type="success"
@@ -70,6 +70,6 @@ export default (): React.ReactNode => (
         use block
       </a>
       。
-    </p>
+    </p> */}
   </PageHeaderWrapper>
 );
