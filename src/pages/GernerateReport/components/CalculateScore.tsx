@@ -4,13 +4,20 @@
 */
 
 import React from 'react';
+import { connect } from 'umi';
 import { Statistic, Row, Col } from 'antd';
 import { LikeOutlined } from '@ant-design/icons';
 import { Typography, Divider } from 'antd';
 
 const { Title, Paragraph } = Typography;
 
-const CalculateScore: React.FC<{}> = () => (
+const CalculateScore: React.FC<{}> = ({ dispatch, singlerecords }: any) => {
+
+const {
+    Inbody_Score,
+} = singlerecords;
+
+return (
     <Typography>
         <Title level={3} style={{textAlign: 'center'}}>
             健康评分
@@ -18,16 +25,19 @@ const CalculateScore: React.FC<{}> = () => (
         <Paragraph>
             <Row>
                 <Col span={12} style={{textAlign: 'center'}}>
-                    <Statistic title="评级" value={'优秀'} prefix={<LikeOutlined />} />
+                    <Statistic title="评级" value={Inbody_Score > 80 ? '优秀':'合格'} prefix={<LikeOutlined />} />
                 </Col>
                 <Col span={12} style={{textAlign: 'center'}}>
-                    <Statistic title="分数" value={93} suffix="/ 100 分" />
+                    <Statistic title="分数" value={Inbody_Score | 0} suffix="/ 100 分" />
                 </Col>
             </Row>
         </Paragraph>
         <Divider />
     </Typography>
 );
+}
 
-export default CalculateScore;
+export default connect(({ singlerecords }: { singlerecords: any }) => ({
+    singlerecords,
+  }))(CalculateScore);
 

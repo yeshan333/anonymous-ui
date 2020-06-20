@@ -3,61 +3,45 @@
 */
 
 import React from 'react';
-import { Table, Typography } from 'antd';
+import { connect } from 'umi';
+import { Typography, Col, Row } from 'antd';
 
 const { Title, Paragraph } = Typography;
 
-const dataSource = [
-  {
-    key: '1',
-    id: '1',
-    target_weight: '',
-    weight_control: '',
-    fat_control: '',
-    muscle_control: '',
-  },
-];
+const WeightControlTable = ({ dispatch, singlerecords }: any) => {
 
-const columns = [
-  {
-    key: 'target_weight',
-    title: '目标体重',
-    dataIndex: 'target_weight',
-    align: 'center' as 'center',
-    render: (text: any) => <p>{text} (kg)</p>
-  },
-  {
-    title: '体重控制',
-    dataIndex: 'weight_control',
-    key: 'weight_control',
-    align: 'center' as 'center',
-    render: (text: any) => <p>{text} (kg)</p>
-  },
-  {
-    title: '脂肪控制',
-    dataIndex: 'fat_control',
-    key: 'fat_control',
-    align: 'center' as 'center',
-    render: (text: any) => <p>{text} (kg)</p>
-  },
-  {
-    title: '肌肉控制',
-    dataIndex: 'muscle_control',
-    key: 'muscle_control',
-    align: 'center' as 'center',
-    render: (text: any) => <p>{text} (kg)</p>
-  },
-];
+  const {
+    Target_Weight,                // 目标体重
+    Weight_Control,               // 体重控制
+    BFM_Control,                  // 脂肪控制
+    FFM_Control,                  // 肌肉控制
+   } = singlerecords;
 
-const WeightControlTable = () => {
   return (
     <Typography>
       <Title level={4}>体重控制</Title>
       <Paragraph>
-        <Table dataSource={dataSource} columns={columns} pagination={false} bordered />
+        <Row>
+          <Col span={12}>目标体重</Col>
+          <Col span={12}>{Target_Weight} kg</Col>
+        </Row>
+        <Row>
+          <Col span={12}>体重控制</Col>
+          <Col span={12}>{Weight_Control} kg</Col>
+        </Row>
+        <Row>
+          <Col span={12}>脂肪控制</Col>
+          <Col span={12}>{BFM_Control} kg</Col>
+        </Row>
+        <Row>
+          <Col span={12}>肌肉控制</Col>
+          <Col span={12}>{FFM_Control} kg</Col>
+        </Row>
       </Paragraph>
     </Typography>
   );
 };
 
-export default WeightControlTable
+export default connect(({ singlerecords }: { singlerecords: any }) => ({
+  singlerecords,
+}))(WeightControlTable);

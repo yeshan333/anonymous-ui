@@ -4,7 +4,7 @@
 
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import React, { useState, useEffect } from 'react';
-import { Spin, Table, Card, Row, Col } from 'antd';
+import { Spin, Table, Card, Row, Col, Divider } from 'antd';
 import CalculateScore from './components/CalculateScore';
 import WeightControlTable from './components/WeightControl';
 import NutritionAssessmentTable from './components/NutritionAssessment';
@@ -12,60 +12,16 @@ import EstimateOverweight from './components/EstimateOverweight';
 import ObesityAnalysis from './components/ObesityAnalysis';
 import MuscleBalance from './components/MuscleBalance';
 
+import PeopleInfo from './components/PeopleInfo';
+import Tester from './components/Tester';
+import AnalysisOfHumanComposition from './components/AnalysisOfHumanComposition';
 // import styles from './index.less';
+import ResearchProject from './components/ResearchProject';
+import BioelectricalImpedance from './components/BioelectricalImpedance';
+import HistoryRecord from './components/HistoryRecord';
 
 
-const dataSource = [
-  {
-    key: '1',
-    id: '1',
-    name: '汕头',
-    age: 32,
-    height: 500,
-    sex: 'male',
-    test_date: '2020-02-02 08:08:08',
-  },
-];
 
-const columns = [
-  {
-    title: 'ID',
-    dataIndex: 'id',
-    key: 'id',
-    align: 'center' as 'center',
-  },
-  {
-    title: '姓名',
-    dataIndex: 'name',
-    key: 'name',
-    align: 'center' as 'center',
-  },
-  {
-    title: '年龄',
-    dataIndex: 'age',
-    key: 'age',
-    align: 'center' as 'center',
-  },
-  {
-    title: '性别',
-    dataIndex: 'sex',
-    key: 'sex',
-    align: 'center' as 'center',
-  },
-  {
-    title: '身高(cm)',
-    dataIndex: 'height',
-    key: 'height',
-    align: 'center' as 'center',
-    render: (text: any) => <p>{text} cm</p>
-  },
-  {
-    title: '测试日期',
-    dataIndex: 'test_date',
-    key: 'test_date',
-    align: 'center' as 'center',
-  },
-];
 
 export default () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -76,26 +32,43 @@ export default () => {
   }, []);
   return (
     <>
-      <PageHeaderWrapper>
+      {/*       <PageHeaderWrapper>
         <div style={{ textAlign: 'center' as 'center' }}>
           <Spin spinning={loading} size="large" />
         </div>
-      </PageHeaderWrapper>
+      </PageHeaderWrapper> */}
+      <div style={{ textAlign: 'center' as 'center' }}>
+        <Spin spinning={loading} size="large" />
+      </div>
       <Card>
         <CalculateScore />
-        <Table dataSource={dataSource} columns={columns} pagination={false} bordered />
+        <PeopleInfo />
       </Card>
-      <Row>
-        <Col span={12}><Card><WeightControlTable /></Card></Col>
-        <Col span={12}><Card><NutritionAssessmentTable /></Card></Col>
-      </Row>
+      <Card>
+        <AnalysisOfHumanComposition />
+      </Card>
+      <Card style={{ textAlign: 'center' }}>
+        <Row align="middle" justify="center" >
+          <Col flex={2}><Card><ResearchProject /></Card></Col>
+        </Row>
+        <Card>
+          <Row align="middle" justify="center">
+            <Col flex={2}><NutritionAssessmentTable /></Col>
+            <Divider type="vertical" style={{ height: 200 }}></Divider>
+            <Col flex={3}><WeightControlTable /></Col>
+          </Row>
+        </Card>
+      </Card>
       <Card>
         <EstimateOverweight />
       </Card>
+      <Card style={{ textAlign: 'center' }}>
+        <BioelectricalImpedance />
+      </Card>
       <Card>
         <Row>
-          <Col span={12}><Card><ObesityAnalysis /></Card></Col>
-          <Col span={12}><Card><MuscleBalance /></Card></Col>
+          <Col sm={24} md={12}><Card><ObesityAnalysis /></Card></Col>
+          <Col sm={24} md={12}><Card><MuscleBalance /></Card></Col>
         </Row>
       </Card>
       <Card style={{ textAlign: 'center' }}>

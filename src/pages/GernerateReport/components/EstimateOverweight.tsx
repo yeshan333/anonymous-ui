@@ -2,6 +2,8 @@
   * 组件：肥胖估计
 */
 
+// TODO: 状态连接
+
 import React from 'react';
 import { Row, Col, Radio } from 'antd';
 import { Typography } from 'antd';

@@ -14,7 +14,7 @@ const FLASK_MOCK = 'http://47.93.42.46:8080/api/login/account';
 const NATIVE_MOCK = '/api/login/account';
 
 export async function fakeAccountLogin(params: LoginParamsType) {
-  return request(FLASK_MOCK, {
+  return request(NATIVE_MOCK, {
     method: 'POST',
     data: params,
   });
