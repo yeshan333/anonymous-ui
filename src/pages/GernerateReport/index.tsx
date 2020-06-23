@@ -2,7 +2,7 @@
   * 报告页组件
 */
 
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+// import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import React, { useState, useEffect } from 'react';
 import { Spin, Table, Card, Row, Col, Divider } from 'antd';
 import CalculateScore from './components/CalculateScore';
@@ -18,9 +18,9 @@ import AnalysisOfHumanComposition from './components/AnalysisOfHumanComposition'
 // import styles from './index.less';
 import ResearchProject from './components/ResearchProject';
 import BioelectricalImpedance from './components/BioelectricalImpedance';
-import HistoryRecord from './components/HistoryRecord';
-
-
+// import HistoryRecord from './components/HistoryRecord';
+import AnalysisOfMuscleFat from './components/AnalysisOfMuscleFat';
+import AnalysisObesity from './components/AnalysisObesity';
 
 
 export default () => {
@@ -61,6 +61,11 @@ export default () => {
       </Card>
       <Card>
         <EstimateOverweight />
+      </Card>
+      <Card>
+        <AnalysisOfMuscleFat />
+        <AnalysisObesity />
+        <Tester />
       </Card>
       <Card style={{ textAlign: 'center' }}>
         <BioelectricalImpedance />

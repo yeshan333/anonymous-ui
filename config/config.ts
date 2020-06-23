@@ -41,18 +41,6 @@ export default defineConfig({
         },
       ],
     },
-    //----------------------------------------------- 公开
-    {
-      path: '/report',
-      component: '../layouts/UserLayout',
-      routes: [
-        {
-          path: '/report',
-          component: './GernerateReport',
-        },
-      ]
-    },
-    //-----------------------------------------------
     {
       path: '/',
       component: '../layouts/SecurityLayout',

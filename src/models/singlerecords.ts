@@ -16,7 +16,7 @@ export default {
         DateTime: "2020-02-02 08:08:08",
 
         Weight: "66666",
-        Lower_limit_Weight: "66666",
+        Lower_Limit_Weight: "66666",
         Upper_Limit_Weight: "66666",
 
         TBW: "66666",
@@ -170,10 +170,10 @@ export default {
     effects: {
         *getRecords({ payload }: any, { call, put }: any) {
             const data = yield call(getSingleRecords);
-            // console.log(data);
+            console.log("从后端拉到的数据：", data);
             yield put({
                 type: 'update',
-                new_item: data
+                new_item: data[0],
             });
         },
     },

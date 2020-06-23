@@ -79,11 +79,10 @@ const PeopleInfo = ({ dispatch, singlerecords }: any) => {
 
     return (
         <>
-            {console.log("从后端剽窃到的数据：",singlerecords)}
             {Array.isArray(singlerecords) ?
                 <><Alert
                     message="不可明说的错误"
-                    description="我透，后端仔给了个数组我或者他崩了，请看控制抬他给我的数据是啥"
+                    description="我透，后端仔没给我数据或者他崩了，请看控制抬他给我的数据是啥"
                     type="error"
                     closable></Alert>
                     <Table dataSource={data} columns={columns} pagination={false} rowKey="ID" bordered />

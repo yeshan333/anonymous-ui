@@ -1,31 +1,9 @@
-/* import React from 'react';
-import { Progress, Row, Col, Typography } from 'antd';
-
-const { Title, Paragraph } = Typography;
-
-const Tester = () => {
-  return (
-    <Typography>
-      <Title>肌肉脂肪分析</Title>
-      <Paragraph>
-        <Row>
-          <Col span={5}>体重(kg)</Col>
-          <Col span={15}><Progress percent={50} status="active" showInfo={false} /></Col>
-          <Col span={4}>72.7<br />(58.9-79.7)</Col>
-        </Row>
-
-        <Progress percent={70} status="exception" />
-        <Progress percent={100} />
-        <Progress percent={50} showInfo={false} />
-      </Paragraph>
-      <Paragraph>
-
-      </Paragraph>
-    </Typography>
-  );
-} */
+/*
+  * 肌肉脂肪分析表组件
+*/
 
 import React from 'react';
+import { connect } from 'umi';
 import { Table, Progress, Typography } from 'antd';
 
 const { Title, Paragraph } = Typography;
@@ -69,18 +47,14 @@ const columns = [
   {
     title: '',
     dataIndex: 'project',
-    // render: renderContent,
   },
   {
     title: '低于标准',
     dataIndex: 'value',
     width: 150,
     render: (text, row, index) => {
-      /*       if (index < 4) {
-              return <a>{text}</a>;
-            } */
       return {
-        children: <Progress percent={text} showInfo={false} status="exception" />,
+        children: <Progress percent={text} showInfo={false} />,
         props: {
           colSpan: 3,
         },
@@ -106,35 +80,41 @@ const columns = [
   },
 ];
 
-const data = [
-  {
-    key: '1',
-    project: '体重（kg）',
-    value: calculateBarValue(72.7, 58.9, 79.7),
-    tel: '0571-22098909',
-    phone: 18889898989,
-    address: '72.7（58.9 - 79.7）',
-  },
-  {
-    key: '2',
-    project: '骨骼肌（kg）',
-    tel: '0571-22098333',
-    phone: 18889898888,
-    value: calculateBarValue(29.9, 24.1, 29.4),
-    address: '29.9（24.1 - 29.4）',
-  },
-  {
-    key: '3',
-    project: '体脂肪',
-    value: calculateBarValue(19.4, 12.7, 25.5),
-    tel: '0575-22098909',
-    phone: 18900010002,
-    address: '19.4（12.7 - 25.5）',
-  },
-];
+const AnalysisOfMuscleFat = ({dispatch, singlerecords}: {dispatch: any, singlerecords: SingleRecords}) => {
+    const {
+        Weight,
+        Upper_Limit_Weight,
+        Lower_Limit_Weight,
+        SMM,
+        Upper_Limit_SMM,
+        Lower_Limit_SMM,
+        BFM,
+        Lower_Limit_BFM,
+        Upper_Limit_BFM,
+    } = singlerecords;
 
-const Tester = () => {
-  return (
+    const data = [
+        {
+          key: '1',
+          project: '体重（kg）',
+          value: calculateBarValue(Weight, Lower_Limit_Weight, Upper_Limit_BFM),
+          address: `${Weight}（${Lower_Limit_Weight} - ${Upper_Limit_Weight}）`,
+        },
+        {
+          key: '2',
+          project: '骨骼肌（kg）',
+          value: calculateBarValue(SMM, Lower_Limit_SMM, Upper_Limit_SMM),
+          address: `${SMM}（${Lower_Limit_SMM} - ${Upper_Limit_SMM}）`,
+        },
+        {
+          key: '3',
+          project: '体脂肪',
+          value: calculateBarValue(BFM, Lower_Limit_BFM, Upper_Limit_BFM),
+          address: `${BFM}（${Lower_Limit_BFM} - ${Upper_Limit_BFM}）`,
+        },
+      ];
+
+    return (
     <Typography>
       <Title level={4}>肌肉脂肪分析</Title>
       <Paragraph>
@@ -144,4 +124,6 @@ const Tester = () => {
   );
 }
 
-export default Tester;
+export default connect(({ singlerecords }: { singlerecords: any }) => ({
+    singlerecords,
+  }))(AnalysisOfMuscleFat);

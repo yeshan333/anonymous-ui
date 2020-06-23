@@ -24,17 +24,17 @@ const columns1 = [
   {
     key: 'Lower',
     title: '正常范围(~到~)',
-    colSpan: 2,
+    // colSpan: 2,
     dataIndex: 'Lower',
     align: 'center' as 'center',
   },
-  {
+/*   {
     key: 'Upper',
     title: '正常范围上界',
     colSpan: 0,
     dataIndex: 'Upper',
     align: 'center' as 'center',
-  },
+  }, */
 ];
 
 /* const columns = [
@@ -109,7 +109,7 @@ const AnalysisOfHumanComposition: React.FC = ({ dispatch, singlerecords }: any) 
     Lower_Limit_FFM,
     Upper_Limit_FFM,
     Weight,
-    Lower_limit_Weight,
+    Lower_Limit_Weight,
     Upper_Limit_Weight,
   } = singlerecords;
 
@@ -118,50 +118,50 @@ const AnalysisOfHumanComposition: React.FC = ({ dispatch, singlerecords }: any) 
       key: '1',
       Project: '身体总水分',
       Value: TBW, // TBW
-      Lower: Lower_Limit_TBW,
-      Upper: Upper_Limit_TBW,
+      Lower: `${Lower_Limit_TBW} - ${Upper_Limit_TBW}`,
+      // Upper: Upper_Limit_TBW,
     },
     {
       key: '2',
       Project: '蛋白质',
       Value: Protein,  // Protein
-      Lower: Lower_Limit_Protein,
-      Upper: Upper_Limit_Protein,
+      Lower: `${Lower_Limit_Protein} - ${Upper_Limit_Protein}`,
+      // Upper: Upper_Limit_Protein,
     },
     {
       key: '3',
       Project: '无机盐',
       Value: Mineral,  // Mineral
-      Lower: Lower_Limit_Mineral,
-      Upper: Upper_Limit_Mineral
+      Lower: `${Lower_Limit_Mineral} - ${Upper_Limit_Mineral}`,
+      // Upper: Upper_Limit_Mineral,
     },
     {
       key: '4',
       Project: '体脂肪',
       Value: BFM,  // BFM
-      Lower: Lower_Limit_BFM,
-      Upper: Upper_Limit_BFM,
+      Lower: `${Lower_Limit_BFM} - ${Upper_Limit_BFM}`,
+      // Upper: Upper_Limit_BFM,
     },
     {
       key: '5',
       Project: '肌肉重',
       Value: SLM,  // SLM
-      Lower: Lower_Limit_SLM,
-      Upper: Upper_Limit_SLM,
+      Lower: `${Lower_Limit_SLM} - ${Upper_Limit_SLM}`,
+      // Upper: Upper_Limit_SLM,
     },
     {
       key: '6',
       Project: '去脂体重',
       Value: FFM,  // FFM
-      Lower: Lower_Limit_FFM,
-      Upper: Upper_Limit_FFM,
+      Lower: `${Lower_Limit_FFM} - ${Upper_Limit_FFM}`,
+      // Upper: Upper_Limit_FFM,
     },
     {
       key: '7',
       Project: '体重',
       Value: Weight,  // Weight
-      Lower: Lower_limit_Weight,
-      Upper: Upper_Limit_Weight,
+      Lower: `${Lower_Limit_Weight} - ${Upper_Limit_Weight}`,
+      // Upper: Upper_Limit_Weight,
     },
   ];
 
@@ -169,7 +169,7 @@ const AnalysisOfHumanComposition: React.FC = ({ dispatch, singlerecords }: any) 
     <Typography>
       <Title level={4}>人体成分分析</Title>
       <Paragraph>
-        <Table columns={columns1} dataSource={dataSource} bordered pagination={false} rowKey="ID" />
+        <Table columns={columns1} dataSource={dataSource} bordered pagination={false} />
       </Paragraph>
     </Typography>
   );
