@@ -26,7 +26,7 @@ const Tester = () => {
 } */
 
 import React from 'react';
-import { Table, Progress, Typography } from 'antd';
+import { Progress, Typography, Row, Col } from 'antd';
 
 const { Title, Paragraph } = Typography;
 
@@ -53,92 +53,49 @@ const calculateBarValue = (value, lower, upper) => {
 
 }
 
-
-const renderContent = (value, row, index) => {
-  const obj = {
-    children: value,
-    props: {},
-  };
-  if (index >= 0 && index <= 4) {
-    obj.props.colSpan = 0;
-  }
-  return obj;
-};
-
-const columns = [
-  {
-    title: '',
-    dataIndex: 'project',
-    // render: renderContent,
-  },
-  {
-    title: '低于标准',
-    dataIndex: 'value',
-    width: 150,
-    render: (text, row, index) => {
-      /*       if (index < 4) {
-              return <a>{text}</a>;
-            } */
-      return {
-        children: <Progress percent={text} showInfo={false} status="exception" />,
-        props: {
-          colSpan: 3,
-        },
-      };
-    },
-  },
-  {
-    title: '标准',
-    dataIndex: 'standard',
-    width: 150,
-    render: renderContent,
-  },
-  {
-    title: '高于标准',
-    dataIndex: 'upper',
-    width: 150,
-    render: renderContent,
-  },
-  {
-    title: '测试值(正常范围)',
-    dataIndex: 'address',
-    // render: renderContent,
-  },
-];
-
-const data = [
-  {
-    key: '1',
-    project: '体重（kg）',
-    value: calculateBarValue(72.7, 58.9, 79.7),
-    tel: '0571-22098909',
-    phone: 18889898989,
-    address: '72.7（58.9 - 79.7）',
-  },
-  {
-    key: '2',
-    project: '骨骼肌（kg）',
-    tel: '0571-22098333',
-    phone: 18889898888,
-    value: calculateBarValue(29.9, 24.1, 29.4),
-    address: '29.9（24.1 - 29.4）',
-  },
-  {
-    key: '3',
-    project: '体脂肪',
-    value: calculateBarValue(19.4, 12.7, 25.5),
-    tel: '0575-22098909',
-    phone: 18900010002,
-    address: '19.4（12.7 - 25.5）',
-  },
-];
-
 const Tester = () => {
   return (
     <Typography>
-      <Title level={4}>肌肉脂肪分析</Title>
+      <Title level={4}>节段脂肪分析</Title>
       <Paragraph>
-        <Table columns={columns} dataSource={data} bordered pagination={false} />
+        <Row>
+          <Col span={4}></Col>
+          <Col span={4}></Col>
+          <Col span={4}>缺乏</Col>
+          <Col span={4}>标准</Col>
+          <Col span={4}>过量</Col>
+          <Col span={4}></Col>
+        </Row>
+        <Row>
+          <Col span={4}>右上肢</Col>
+          <Col span={4}>1.1 kg</Col>
+          <Col span={12}><Progress percent={20} showInfo={false} status="exception" /></Col>
+          <Col span={4}>107.9%</Col>
+        </Row>
+        <Row>
+          <Col span={4}>左上肢</Col>
+          <Col span={4}>1.1 kg</Col>
+          <Col span={12}><Progress percent={55} showInfo={false} status="exception" /></Col>
+          <Col span={4}>107.9%</Col>
+        </Row>
+        <Row>
+          <Col span={4}>躯干</Col>
+          <Col span={4}>1.1 kg</Col>
+          <Col span={12}><Progress percent={80} showInfo={false} status="exception" /></Col>
+          <Col span={4}>107.9%</Col>
+        </Row>
+        <Row>
+          <Col span={4}>右下肢</Col>
+          <Col span={4}>1.1 kg</Col>
+          <Col span={12}><Progress percent={100} showInfo={false} status="exception" /></Col>
+          <Col span={4}>107.9%</Col>
+        </Row>
+        <Row>
+          <Col span={4}>左下肢</Col>
+          <Col span={4}>1.1 kg</Col>
+          <Col span={12}><Progress percent={55} showInfo={false} status="exception" /></Col>
+          <Col span={4}>107.9%</Col>
+        </Row>
       </Paragraph>
     </Typography>
   );

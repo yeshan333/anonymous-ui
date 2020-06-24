@@ -54,7 +54,7 @@ const columns = [
     width: 150,
     render: (text, row, index) => {
       return {
-        children: <Progress percent={text} showInfo={false} />,
+        children: <Progress percent={text} showInfo={false} status="active" strokeColor="#52c41a" />,
         props: {
           colSpan: 3,
         },
@@ -108,7 +108,7 @@ const AnalysisOfMuscleFat = ({dispatch, singlerecords}: {dispatch: any, singlere
         },
         {
           key: '3',
-          project: '体脂肪',
+          project: '体脂肪（kg）',
           value: calculateBarValue(BFM, Lower_Limit_BFM, Upper_Limit_BFM),
           address: `${BFM}（${Lower_Limit_BFM} - ${Upper_Limit_BFM}）`,
         },

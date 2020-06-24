@@ -81,9 +81,9 @@ declare interface SingleRecords {
     Upper_Limit_FFM_of_Right_Leg: number,
     FFM_Persents_of_Right_Leg: number,
 
+    FFM_of_Left_Leg: number,
     Upper_Limit_FFM_of_Left_Leg: number,  // 左下肢脂肪
-    Lower_Limit_Upper_Limit_FFM_of_Left_Leg: number,
-    Upper_Limit_Upper_Limit_FFM_of_Left_Leg: number,
+    Lower_Limit_FFM_of_Left_Leg: number,
     FFM_Persents_of_Left_Leg: number,
 
     ECW_TBW: number,                      // 细胞外水分比

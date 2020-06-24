@@ -54,7 +54,7 @@ const columns = [
     width: 150,
     render: (text, row, index) => {
       return {
-        children: <Progress percent={text} showInfo={false}  status="active"/>,
+        children: <Progress percent={text} showInfo={false}  status="active" strokeColor="#f47920" />,
         props: {
           colSpan: 3,
         },

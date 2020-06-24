@@ -21,7 +21,7 @@ import BioelectricalImpedance from './components/BioelectricalImpedance';
 // import HistoryRecord from './components/HistoryRecord';
 import AnalysisOfMuscleFat from './components/AnalysisOfMuscleFat';
 import AnalysisObesity from './components/AnalysisObesity';
-
+import AnalysisOfSegmentalFat from './components/AnalysisOfSegmentalFat';
 
 export default () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -63,21 +63,29 @@ export default () => {
         <EstimateOverweight />
       </Card>
       <Card>
-        <AnalysisOfMuscleFat />
         <AnalysisObesity />
-        <Tester />
+      </Card>
+      <Card>
+        <AnalysisOfMuscleFat />
+        {/* <Tester /> */}
+      </Card>
+      <Card>
+        <AnalysisOfSegmentalFat />
       </Card>
       <Card style={{ textAlign: 'center' }}>
         <BioelectricalImpedance />
       </Card>
       <Card>
+        {/*
         <Row>
-          <Col sm={24} md={12}><Card><ObesityAnalysis /></Card></Col>
+          <Col sm={24} md={12}><Card><AnalysisObesity /></Card></Col>
           <Col sm={24} md={12}><Card><MuscleBalance /></Card></Col>
         </Row>
+        */}
+        <MuscleBalance />
       </Card>
       <Card style={{ textAlign: 'center' }}>
-        <h2>敬请期待</h2>
+        <h2>更多内容，敬请期待</h2>
       </Card>
     </>
   );
