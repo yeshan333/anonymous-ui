@@ -53,7 +53,7 @@ const Judger = ({ value, lower, upper }: any) => {
     }else if(value > upper){
       setSelect(3);
     }else{
-      setSelect(1);
+      setSelect(0);
     }
   });
 
