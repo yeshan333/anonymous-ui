@@ -2,6 +2,8 @@
   * 权限获取与权限设置
 */
 
+// TODO: 权限获取、配置完善
+
 import { reloadAuthorized } from './Authorized';
 
 // use localStorage to store the authority info, which might be sent from server in actual project.
@@ -33,4 +35,9 @@ export function setAuthority(authority: string | string[]): void {
   localStorage.setItem('antd-pro-authority', JSON.stringify(proAuthority));
   // auto reload
   reloadAuthorized();
+}
+
+export function setToken(token: string) {
+
+  localStorage.setItem('token', JSON.stringify(token));
 }

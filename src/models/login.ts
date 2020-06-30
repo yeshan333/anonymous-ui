@@ -32,6 +32,7 @@ const Model: LoginModelType = {
 
   effects: {
     *login({ payload }, { call, put }) {
+      // TODO: 登录逻辑微修改，加入 token
       const response = yield call(fakeAccountLogin, payload);
       yield put({
         type: 'changeLoginStatus',
@@ -74,6 +75,7 @@ const Model: LoginModelType = {
 
   reducers: {
     changeLoginStatus(state, { payload }) {
+      // TODO: 权限写入微调
       setAuthority(payload.currentAuthority);
       return {
         ...state,
