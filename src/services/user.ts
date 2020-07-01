@@ -1,6 +1,6 @@
 import request from '@/utils/request';
 
-const MOCK = '' // 'http://47.93.42.46:8080'
+const MOCK = 'http://127.0.0.1:5000' // 'http://47.93.42.46:8080'
 
 export async function query(): Promise<any> {
   return request(MOCK + '/api/users');

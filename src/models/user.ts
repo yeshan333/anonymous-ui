@@ -50,10 +50,12 @@ const UserModel: UserModelType = {
     },
     // TODO: 了解如何获取当前用户信息
     *fetchCurrent(_, { call, put }) {
-      const response = yield call(queryCurrent);
+      // const response = yield call(queryCurrent);
+      const response = yield localStorage.getItem("xxx");
+      console.log("获取用户信息: ", response);
       yield put({
         type: 'saveCurrentUser',
-        payload: response,
+        payload: JSON.parse(response), // TODO: 反序列化
       });
     },
   },

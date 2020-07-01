@@ -34,6 +34,11 @@ const Model: LoginModelType = {
     *login({ payload }, { call, put }) {
       // TODO: 登录逻辑微修改，加入 token
       const response = yield call(fakeAccountLogin, payload);
+      console.log("登录成功返回信息：", response);
+      //----------------------------存储 token 到 localstorage----------
+      let user_info = {...response, userid: "17007101", name: "yeshan"};
+      localStorage.setItem("xxx", JSON.stringify(user_info));
+      //----------------------------------------------------------------
       yield put({
         type: 'changeLoginStatus',
         payload: response,
