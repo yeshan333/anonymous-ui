@@ -78,6 +78,7 @@ const TableList: React.FC<{}> = () => {
   const [updateModalVisible, handleUpdateModalVisible] = useState<boolean>(false);
   const [stepFormValues, setStepFormValues] = useState({});
   const actionRef = useRef<ActionType>();
+
   const columns: ProColumns<TableListItem>[] = [
     {
       title: '规则名称',
@@ -144,7 +145,7 @@ const TableList: React.FC<{}> = () => {
             配置
           </a>
           <Divider type="vertical" />
-          <a href="">订阅警报</a>
+          <a href="#">订阅警报</a>
         </>
       ),
     },

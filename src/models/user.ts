@@ -14,10 +14,14 @@ export interface CurrentUser {
   }[];
   userid?: string;
   unreadCount?: number;
+  token?: number;
+  ID?: string;
+  username?: string;
 }
 
 export interface UserModelState {
   currentUser?: CurrentUser;
+  userlist?: any;  // TODO: 用户信息列表类型
 }
 
 export interface UserModelType {
@@ -38,6 +42,7 @@ const UserModel: UserModelType = {
 
   state: {
     currentUser: {},
+    userlist: [],
   },
 
   effects: {

@@ -2,6 +2,8 @@
   * bodycompositionrecords: 人体成分记录
 */
 
+import { getAllRecords } from '../services/getcompositionrecords';
+
 const xxstate = [
     {
         /* 组件依赖字段 */
@@ -464,14 +466,41 @@ const xxstate = [
     }
 ]
 
-export default  {
+export default {
     namespace: 'bodycompositionrecords',
 
-    state: xxstate,
+    state: [],
 
     reducers: {
         delete(state: any, { record_key }: { record_key: any }) {
             return state.filter((item: any) => item.ID !== record_key);
         },
+        update(state: any, { new_items }: any) {
+            return [...new_items];
+        },
     },
+
+    effects: {
+        *getRecords({ payload }: any, { call, put }: any) {
+            const data = yield call(getAllRecords);
+            console.log("从后端拉到所有测试数据：", data);
+            yield put({
+                type: 'update',
+                new_items: data,
+            });
+        }
+    },
+
+    // TODO: 消息订阅
+    subscriptions: {
+        setup({ dispatch, history }: any) {
+            history.listen(({ pathname }) => {
+                if (pathname === '/welcome') {
+                    dispatch({
+                        type: 'getRecords',
+                    });
+                }
+            });
+        }
+    }
 }

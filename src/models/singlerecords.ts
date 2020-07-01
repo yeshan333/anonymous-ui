@@ -173,7 +173,7 @@ export default {
             console.log("从后端拉到的数据：", data);
             yield put({
                 type: 'update',
-                new_item: data[0],
+                new_item: data,
             });
         },
     },
@@ -182,7 +182,7 @@ export default {
     subscriptions: {
             setup({ dispatch, history }: any) {
                 history.listen(({ pathname }) => {
-                    if (pathname === '/report') {
+                    if (pathname === '/generate-report') {
                         dispatch({
                             type: 'getRecords',
                         });

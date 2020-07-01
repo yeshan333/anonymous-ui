@@ -76,14 +76,14 @@ export default defineConfig({
                 },
               ],
             },
-            /*
+
             {
               name: 'list.table-list',
               icon: 'table',
               path: '/list',
               component: './ListTableList',
             },
-            */
+
             {
               name: 'generate-report',
               icon: 'smile',

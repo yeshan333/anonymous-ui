@@ -10,7 +10,6 @@ import { Table, Button } from "antd";
 // 测试记录项类型定义
 interface Item {
   /* 组件依赖字段 */
-  key: number,
   name: string,
 
 
@@ -171,7 +170,7 @@ const BodyCompositionRecordsTable = ({ dispatch, bodycompositionrecords }: any) 
       width: 100,
       dataIndex: "ID",
       key: "ID",
-      fixed: "left"
+      // fixed: "left" as "left"
     },
     {
       title: "Height",
@@ -842,7 +841,7 @@ const BodyCompositionRecordsTable = ({ dispatch, bodycompositionrecords }: any) 
     {
       title: "Action",
       key: "operation",
-      fixed: "right",
+      fixed: "right" as "right",
       width: 100,
       render: (_: any, record: Item) => <Button danger onClick={() => dispatch({ type: 'bodycompositionrecords/delete', record_key: record.ID })}>delete {record.key}</Button>
     }
@@ -851,7 +850,7 @@ const BodyCompositionRecordsTable = ({ dispatch, bodycompositionrecords }: any) 
   return (
     <div className={styles.container}>
       <div id="components-table-demo-fixed-columns-header">
-        <Table columns={columns} dataSource={bodycompositionrecords} scroll={{ x: 1500, y: 300 }} rowKey="ID" />
+        <Table columns={columns} dataSource={bodycompositionrecords} rowKey="ID"   scroll={{ x: 1500, /* y: 300 */ }}/>
       </div>
     </div>
   );

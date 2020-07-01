@@ -6,7 +6,7 @@ interface Item {
     key: string;
     id: string,
     name: string;
-    id_number: number, // 身份证号
+    ID: number, // 身份证号
     password: string;
 }
 
@@ -15,7 +15,7 @@ for (let i = 0; i < 100; i++) {
     originData.push({
         key: i.toString(),
         id: i.toString(),
-        id_number: 450111334546,
+        ID: 450111334546,
         name: `Edrward ${i}`,
         password: `London Park no. ${i}`,
     });
@@ -75,7 +75,7 @@ const UsersManagementEditableTable = () => {
     const isEditing = (record: Item) => record.key === editingKey;
 
     const edit = (record: Item) => {
-        form.setFieldsValue({ name: '', age: '', address: '', ...record });
+        form.setFieldsValue({  age: '', address: '', ...record });
         setEditingKey(record.key);
     };
 
@@ -110,7 +110,7 @@ const UsersManagementEditableTable = () => {
     const columns = [
         {
             title: '身份证号',
-            dataIndex: 'id_number',
+            dataIndex: 'ID',
             width: '15%',
             editable: true,
         },
