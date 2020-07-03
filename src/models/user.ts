@@ -1,6 +1,6 @@
 import { Effect, Reducer } from 'umi';
 
-import { queryCurrent, query as queryUsers } from '@/services/user';
+import { queryCurrent, addNewUser, query as queryUsers } from '@/services/user';
 
 export interface CurrentUser {
   avatar?: string;
@@ -30,10 +30,18 @@ export interface UserModelType {
   effects: {
     fetch: Effect;
     fetchCurrent: Effect;
+    deleteUser: Effect;
+    addUser: Effect;
   };
   reducers: {
+    add: Reducer<UserModelState>;
+    save: Reducer<UserModelState>;
+    delete: Reducer<UserModelState>;
     saveCurrentUser: Reducer<UserModelState>;
     changeNotifyCount: Reducer<UserModelState>;
+  };
+  subscriptions: { // TODO: 类型
+
   };
 }
 
@@ -48,6 +56,7 @@ const UserModel: UserModelType = {
   effects: {
     *fetch(_, { call, put }) {
       const response = yield call(queryUsers);
+      console.log("所有用户的信息: ", response)
       yield put({
         type: 'save',
         payload: response,
@@ -63,9 +72,43 @@ const UserModel: UserModelType = {
         payload: JSON.parse(response), // TODO: 反序列化
       });
     },
+    *deleteUser({ payload }, { call, put }) {
+      // TODO：删除用户
+    },
+    *addUser({ payload }, { call, put }) {
+      console.log("等待添加的用户", payload)
+      const response = yield call(addNewUser, payload);
+      console.log("添加新用户响应", response);
+      if(response.success) {
+        alert("注册成功");
+        yield put({
+          type: 'fetch',
+        });
+      } else {
+        alert("注册失败：" + response.message);
+      }
+    },
   },
 
   reducers: {
+    add(state, action) {
+      return {
+        ...state,
+        userlist: [action.payload, ...state.userlist]
+      }
+    },
+    save(state, action) {
+      return {
+        ...state,
+        userlist: action.payload || []
+      };
+    },
+    delete(state, action) {
+      return {
+        ...state,
+        userlist: state.userlist.filter((item: any) => item.id !== action.record_key)
+      };
+    },
     saveCurrentUser(state, action) {
       return {
         ...state,
@@ -87,6 +130,18 @@ const UserModel: UserModelType = {
         },
       };
     },
+  },
+
+  subscriptions: {
+    setup({ dispatch, history }: any) {
+      history.listen(({ pathname }) => {
+        if (pathname === '/admin/user-management') {
+          dispatch({
+            type: 'fetch',
+          });
+        }
+      });
+    }
   },
 };
 

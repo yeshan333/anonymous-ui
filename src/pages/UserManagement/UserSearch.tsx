@@ -1,8 +1,12 @@
 import React from 'react';
-import { Table, Input, Button, Space, Modal } from 'antd';
+import { connect } from 'umi';
+import { Table, Input, Button, Space, Modal, Tag, Tooltip } from 'antd';
+import { PlusOutlined, AreaChartOutlined, DeleteOutlined, DownloadOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 
+
+import AddNewUser from './components/AddNewUser';
 import BodyCompositionRecordsTable from '../BodyCompositionRecordsTable';
 
 interface Item {
@@ -45,6 +49,10 @@ const data = [
 ];
 
 class App extends React.Component {
+  constructor(props: any) {
+    super(props)
+  };
+
   state = {
     visiable: false,  // 查看用户数据模态框控制
     searchText: '',
@@ -114,7 +122,15 @@ class App extends React.Component {
     this.setState({ searchText: '' });
   };
 
+  clickDelete = (key: any) => {
+    this.props.dispatch({ // TODO: 错误提示？？？
+      type: 'user/delete',
+      record_key: key
+    })
+  }
+
   render() {
+
     const columns = [
       {
         title: 'ID（身份证号）',
@@ -135,7 +151,8 @@ class App extends React.Component {
         dataIndex: 'role',
         key: 'role',
         ...this.getColumnSearchProps('role'),
-        align: "center"
+        align: "center",
+        render: (text: any) => <Tag color="success">{text}</Tag>
       },
       {
         title: 'operation（操作）',
@@ -145,9 +162,14 @@ class App extends React.Component {
         render: (_: any, record: Item) => {
           return (
             <>
-            <Button onClick={() => this.setState({ visiable: true })}>
-                查看该用户的测试数据
-            </Button>
+              <Tooltip placement="top" title={"查看用户所测数据"}>
+                <Button
+                  onClick={() => this.setState({ visiable: true })}
+                  icon={<AreaChartOutlined />}
+                >
+                    data
+                </Button>
+              </Tooltip>
               <Modal
                 title="某用户测试数据"
                 visible={this.state.visiable}
@@ -157,10 +179,23 @@ class App extends React.Component {
               >
                 <BodyCompositionRecordsTable />
               </Modal>
-              <Button  >
-                删除用户
-            </Button>
-
+              <Tooltip placement="top" title={"删除用户"}>
+                <Button
+                  style={{ marginLeft: 5 }}
+                  type="primary"
+                  danger
+                  icon={<DeleteOutlined />}
+                  onClick={() => this.clickDelete(record.id)}
+                >
+                </Button>
+              </Tooltip>
+              <Tooltip placement="top" title={"导出用户数据"}>
+                <Button
+                  icon={<DownloadOutlined />}
+                  style={{ marginLeft: 5 }}
+                >
+                </Button>
+              </Tooltip>
             </>
           );
         }
@@ -168,12 +203,13 @@ class App extends React.Component {
     ];
     return (
       <>
-        <Button>增加新用户</Button>
-        <Table columns={columns} dataSource={data} bordered rowKey="ID" />
+        <AddNewUser />
+        <Table columns={columns} dataSource={this.props.userlist} bordered rowKey="id" />
       </>
     );
   }
 }
 
-
-export default App;
+export default connect(({ user }: { user: any }) => ({
+  userlist: user.userlist,
+}))(App);
