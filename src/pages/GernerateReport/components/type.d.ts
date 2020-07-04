@@ -87,20 +87,32 @@ declare interface SingleRecords {
     FFM_Persents_of_Left_Leg: number,
 
     ECW_TBW: number,                      // 细胞外水分比
+    Lower_Limit_ECW_TBW: number,
+    Upper_Limit_ECW_TBW: number,
 
     BFM_of_Right_Arm: number,
+    Lower_Limit_BFM_of_Right_Arm: number,
+    Upper_Limit_BFM_of_Right_Arm: number,
     BFM_Persents_of_Right_Arm: number,
 
     BFM_of_Left_Arm: number,//左上臂脂肪
+    Lower_Limit_BFM_of_Left_Arm: number,
+    Upper_Limit_BFM_of_Left_Arm: number,
     BFM_Persents_of_Left_Arm: number,//左上臂脂肪百分比
 
     BFM_of_Trunk: number,//躯干脂肪
+    Lower_Limit_BFM_of_Trunk: number,
+    Upper_Limit_BFM_of_Trunk: number,
     BFM_Persents_of_Trunk: number,//躯干脂肪百分比
 
     BFM_of_Right_Leg: number,
-    BFM_Persents_of_Right_Leg: number,     //70
+    Lower_Limit_BFM_of_Right_Leg: number,
+    Upper_Limit_BFM_of_Right_Leg: number,
+    BFM_Persents_of_Right_Leg: number,
 
     BFM_of_Left_Leg: number,
+    Lower_Limit_BFM_of_Left_Leg: number,
+    Upper_Limit_BFM_of_Left_Leg: number,
     BFM_Persents_of_Left_Leg: number,
 
     Inbody_Score: number,                 // 健康评分

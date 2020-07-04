@@ -28,7 +28,6 @@ const calculateBarValue = (value, lower, upper) => {
   } else {
     return 0;
   }
-
 }
 
 
