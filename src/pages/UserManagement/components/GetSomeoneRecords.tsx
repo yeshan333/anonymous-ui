@@ -2,9 +2,8 @@
   * 学生设备测得的人体信息表
 */
 
-import React from "react";
-import { connect } from 'umi';
-import styles from "./index.less";
+import React, { useState, useEffect } from "react";
+import request from 'umi-request';
 import { Table, Button } from "antd";
 import { DeleteFilled } from '@ant-design/icons';
 
@@ -164,7 +163,7 @@ interface Item {
   PrePregnancy_Weight: number,           //  孕前体重
 }
 
-const BodyCompositionRecordsTable = ({ dispatch, bodycompositionrecords }: any) => {
+const SomeoneRecordsTable = (props: any) => {
 
   const columns = [
     {
@@ -849,19 +848,38 @@ const BodyCompositionRecordsTable = ({ dispatch, bodycompositionrecords }: any) 
     }
   ];
 
+  const [user_name, setUsername] = useState('');
+  const [bodycompositionrecords, setRecords] = useState([]);
+
+  useEffect(() => {
+      const username = localStorage.getItem('finduser');
+      console.log(username);
+      //setUsername(username);
+      // console.log(props);
+      let user_info: any  = localStorage.getItem('xxx');
+      let token: string = JSON.parse(user_info).token;
+      request('http://127.0.0.1:5000/getheaders', {
+        method: 'post',
+        data: {
+            user_name: username,
+        },
+        headers: {
+            Authorization: token,
+        }
+      })
+      .then((response) => {
+        console.log(response);
+        if(response != [])
+            setRecords(response);
+      })
+      .catch(error => {
+          console.log(error);
+      })
+  }, [user_name])
+
   return (
-    <div className={styles.container}>
-      <div id="components-table-demo-fixed-columns-header">
-        <Table columns={columns} dataSource={bodycompositionrecords} rowKey="id"   scroll={{ x: 1500, /* y: 300 */ }}/>
-      </div>
-    </div>
+    <Table columns={columns} dataSource={bodycompositionrecords} rowKey="id"   scroll={{ x: 1500, /* y: 300 */ }}/>
   );
 }
 
-/*
-  * bodycompositionrecords: 人体成分记录
-*/
-
-export default connect(({ bodycompositionrecords }: { bodycompositionrecords: any }) => ({
-  bodycompositionrecords,
-}))(BodyCompositionRecordsTable);
+export default SomeoneRecordsTable;

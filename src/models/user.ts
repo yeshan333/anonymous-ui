@@ -1,6 +1,6 @@
 import { Effect, Reducer } from 'umi';
 
-import { queryCurrent, addNewUser, query as queryUsers } from '@/services/user';
+import { deleteUserForce, queryCurrent, addNewUser, query as queryUsers } from '@/services/user';
 
 export interface CurrentUser {
   avatar?: string;
@@ -74,11 +74,16 @@ const UserModel: UserModelType = {
     },
     *deleteUser({ payload }, { call, put }) {
       // TODO：删除用户
+      const response = yield call(deleteUserForce, payload);
+      console.log(response);
+      yield put({
+        type: 'fetch',
+      });
     },
     *addUser({ payload }, { call, put }) {
-      console.log("等待添加的用户", payload)
+      // console.log("等待添加的用户", payload)
       const response = yield call(addNewUser, payload);
-      console.log("添加新用户响应", response);
+      // console.log("添加新用户响应", response);
       if(response.success) {
         alert("注册成功");
         yield put({

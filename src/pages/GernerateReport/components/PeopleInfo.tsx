@@ -60,7 +60,7 @@ const columns = [
 
 const PeopleInfo = ({ dispatch, singlerecords }: any) => {
     const {
-        ID,
+        IDCard,
         Age,
         Gender,
         Height,
@@ -69,7 +69,7 @@ const PeopleInfo = ({ dispatch, singlerecords }: any) => {
 
     const data = [
         {
-            ID: ID,
+            ID: IDCard,
             Age: Age,
             Gender: Gender,
             Height: Height,

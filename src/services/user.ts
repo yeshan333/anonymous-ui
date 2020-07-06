@@ -35,3 +35,17 @@ export async function addNewUser(user: any) {
     }
   );
 }
+
+export async function deleteUserForce(user: any) {
+  let user_info: any  = localStorage.getItem('xxx');
+  let token: string = JSON.parse(user_info).token;
+  console.log("正在删除用户", user)
+  return request('http://47.92.4.141:8080/api/admin/deleteUser',{
+      method: 'post',
+      data: user,
+      headers: {
+        Authorization: token
+      }
+    }
+  );
+}

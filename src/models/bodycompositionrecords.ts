@@ -2,7 +2,7 @@
   * bodycompositionrecords: 人体成分记录
 */
 
-import { getAllRecords } from '../services/getcompositionrecords';
+import { getAllRecords, deleteRecordForce } from '../services/getcompositionrecords';
 
 const xxstate = [
     {
@@ -473,7 +473,7 @@ export default {
 
     reducers: {
         delete(state: any, { record_key }: { record_key: any }) {
-            return state.filter((item: any) => item.ID !== record_key);
+            return state.filter((item: any) => item.id !== record_key);
         },
         update(state: any, { new_items }: any) {
             return [...new_items];
@@ -488,7 +488,14 @@ export default {
                 type: 'update',
                 new_items: data,
             });
-        }
+        },
+        *deleteRecord({ payload }: any, { call, put }: any) {
+            const response = yield call(deleteRecordForce, payload);
+            // console.log("删除", response);
+            yield put({
+                type: 'getRecords',
+            });
+        },
     },
 
     // TODO: 消息订阅

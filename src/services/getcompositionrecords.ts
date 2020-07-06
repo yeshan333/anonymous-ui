@@ -16,3 +16,17 @@ export async function getAllRecords() {
       }
     });
 }
+
+export async function deleteRecordForce(record_id: any) {
+  let user_info: any  = localStorage.getItem('xxx');
+  let token: string = JSON.parse(user_info).token;
+  return request('http://47.92.4.141:8080/api/user/deleteInfOne', {
+    method: 'post',
+    data: {
+      id: record_id,
+    },
+    headers: {
+        'Authorization': token
+    }
+  });
+}

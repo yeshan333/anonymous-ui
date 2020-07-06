@@ -76,7 +76,7 @@ export default defineConfig({
                 },
               ],
             },
-
+/*
             {
               name: 'list.table-list',
               icon: 'table',
@@ -84,7 +84,7 @@ export default defineConfig({
               component: './ListTableList',
             },
 
-            {
+ */            {
               name: 'generate-report',
               icon: 'smile',
               path: '/generate-report',

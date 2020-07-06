@@ -97,7 +97,7 @@ const AnalysisOfMuscleFat = ({dispatch, singlerecords}: {dispatch: any, singlere
         {
           key: '1',
           project: '体重（kg）',
-          value: calculateBarValue(Weight, Lower_Limit_Weight, Upper_Limit_BFM),
+          value: calculateBarValue(Weight, Lower_Limit_Weight, Upper_Limit_Weight),
           address: `${Weight}（${Lower_Limit_Weight} - ${Upper_Limit_Weight}）`,
         },
         {

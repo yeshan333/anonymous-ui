@@ -35,9 +35,9 @@ const Model: LoginModelType = {
       // TODO: 登录逻辑微修改，加入 token
       const response = yield call(fakeAccountLogin, payload);
       console.log("登录成功返回信息：", response);
-      console.log(payload);
+      console.log(response.token);
       //----------------------------存储 token 到 localstorage----------
-      let user_info = {...response, name: payload.userName};
+      let user_info = {...response, token: response.Token, name: payload.userName};
       localStorage.setItem("xxx", JSON.stringify(user_info));
       //----------------------------------------------------------------
       yield put({
@@ -67,6 +67,7 @@ const Model: LoginModelType = {
 
     logout() {
       const { redirect } = getPageQuery();
+      localStorage.removeItem("xxx");
       // Note: There may be security issues, please note
       if (window.location.pathname !== '/user/login' && !redirect) {
         history.replace({
@@ -82,7 +83,13 @@ const Model: LoginModelType = {
   reducers: {
     changeLoginStatus(state, { payload }) {
       // TODO: 权限写入微调
-      setAuthority(payload.currentAuthority);
+      let authority_tmp = 'guest';
+      if(payload.currentAuthority === 'Role_ADMIN'){
+        authority_tmp = 'admin';
+      } else if(payload.currentAuthority === 'Role_USER') {
+        authority_tmp = 'user';
+      }
+      setAuthority(authority_tmp);
       return {
         ...state,
         status: payload.status,

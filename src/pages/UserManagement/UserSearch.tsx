@@ -7,12 +7,12 @@ import { SearchOutlined } from '@ant-design/icons';
 
 
 import AddNewUser from './components/AddNewUser';
-import BodyCompositionRecordsTable from '../BodyCompositionRecordsTable';
+import SomeoneRecordsTable from './components/GetSomeoneRecords';
 
 interface Item {
   key: string;
   id: string,
-  username: string;
+  user_name: string;
   ID: number, // 身份证号
   password: string;
 }
@@ -122,10 +122,10 @@ class App extends React.Component {
     this.setState({ searchText: '' });
   };
 
-  clickDelete = (key: any) => {
+  clickDelete = (record: any) => {
     this.props.dispatch({ // TODO: 错误提示？？？
-      type: 'user/delete',
-      record_key: key
+      type: 'user/deleteUser',
+      payload: record
     })
   }
 
@@ -164,7 +164,10 @@ class App extends React.Component {
             <>
               <Tooltip placement="top" title={"查看用户所测数据"}>
                 <Button
-                  onClick={() => this.setState({ visiable: true })}
+                  onClick={() => {
+                    localStorage.setItem('finduser', JSON.stringify(record.user_name));
+                    this.setState({ visiable: true });
+                  }}
                   icon={<AreaChartOutlined />}
                 >
                     data
@@ -177,7 +180,7 @@ class App extends React.Component {
                 onCancel={() => this.setState({ visiable: false })}
                 width='1000px'
               >
-                <BodyCompositionRecordsTable />
+                <SomeoneRecordsTable />
               </Modal>
               <Tooltip placement="top" title={"删除用户"}>
                 <Button
@@ -185,7 +188,7 @@ class App extends React.Component {
                   type="primary"
                   danger
                   icon={<DeleteOutlined />}
-                  onClick={() => this.clickDelete(record.id)}
+                  onClick={() => this.clickDelete(record)}
                 >
                 </Button>
               </Tooltip>
