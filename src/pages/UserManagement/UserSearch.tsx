@@ -50,13 +50,18 @@ const data = [
 
 class App extends React.Component {
   constructor(props: any) {
-    super(props)
-  };
+    super(props);
 
-  state = {
-    visiable: false,  // 查看用户数据模态框控制
-    searchText: '',
-    searchedColumn: '',
+    this.state = {
+      visiable: false,  // 查看用户数据模态框控制
+      searchText: '',
+      searchedColumn: '',
+    };
+
+    this.getColumnSearchProps = this.getColumnSearchProps.bind(this);
+    this.handleReset = this.handleReset.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.clickDelete = this.clickDelete.bind(this);
   };
 
   getColumnSearchProps = dataIndex => ({
@@ -165,7 +170,10 @@ class App extends React.Component {
               <Tooltip placement="top" title={"查看用户所测数据"}>
                 <Button
                   onClick={() => {
-                    localStorage.setItem('finduser', JSON.stringify(record.user_name));
+                    this.props.dispatch({
+                      type: 'people/update',
+                      username: record.user_name,
+                    });
                     this.setState({ visiable: true });
                   }}
                   icon={<AreaChartOutlined />}
@@ -196,6 +204,7 @@ class App extends React.Component {
                 <Button
                   icon={<DownloadOutlined />}
                   style={{ marginLeft: 5 }}
+                  onClick={() => alert("未完工")}
                 >
                 </Button>
               </Tooltip>
