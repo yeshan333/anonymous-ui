@@ -853,7 +853,6 @@ const SomeoneRecordsTable = ({ dispatch, username }: any) => {
 
     useEffect(() => {
         console.log(username);
-        if (username !== '') {
             let user_info: any = localStorage.getItem('xxx');
             let token: string = JSON.parse(user_info).token;
             request('http://47.92.4.141:8080/api/admin/finduserinf', {
@@ -872,15 +871,22 @@ const SomeoneRecordsTable = ({ dispatch, username }: any) => {
                 .catch(error => {
                     console.log(error);
                 })
-        }
     }, [username]) // TODO: Bug, 不使用 Effect 第二个参数 [username] 渲染死循环，了解原因，
 
     return (
         <Table columns={columns} dataSource={bodycompositionrecords} rowKey="id" scroll={{ x: 1500, /* y: 300 */ }} />
     );
 }
+const SomeoneRecordsTablex = () => {
+    useEffect(() => {
+        console.log("??");
+    })
 
+    return (
+        <p>111</p>
+    );
+}
 
 export default connect(({ people }: { people: any }) => ({
     username: people.user_name,
-}))(SomeoneRecordsTable);
+}))(SomeoneRecordsTablex);

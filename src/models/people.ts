@@ -7,6 +7,7 @@ export default {
 
     state: {
         user_name: '',
+        visiable: false,
     },
 
     reducers: {
@@ -14,6 +15,7 @@ export default {
             return {
                 ...state,
                 user_name: username,
+                visiable: true,
             }
         }
     },
