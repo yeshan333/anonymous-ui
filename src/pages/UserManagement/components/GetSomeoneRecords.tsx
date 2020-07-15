@@ -889,4 +889,4 @@ const SomeoneRecordsTablex = () => {
 
 export default connect(({ people }: { people: any }) => ({
     username: people.user_name,
-}))(SomeoneRecordsTablex);
+}))(SomeoneRecordsTable);

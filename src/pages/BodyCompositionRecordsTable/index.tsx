@@ -3,10 +3,12 @@
 */
 
 import React from "react";
-import { connect } from 'umi';
+import { connect, history } from 'umi';
 import styles from "./index.less";
 import { Table, Button } from "antd";
-import { DeleteFilled } from '@ant-design/icons';
+import { DeleteFilled, AreaChartOutlined } from '@ant-design/icons';
+
+import DownloadCSV from './components/DownloadCSV';
 
 // 测试记录项类型定义
 interface Item {
@@ -852,6 +854,13 @@ const BodyCompositionRecordsTable = ({ dispatch, bodycompositionrecords }: any) 
   return (
     <div className={styles.container}>
       <div id="components-table-demo-fixed-columns-header">
+        <Button
+          type="primary"
+          onClick={() => history.push('/generate-report')}
+          icon={<AreaChartOutlined />}>
+            生成报告
+        </Button>
+        <DownloadCSV />
         <Table columns={columns} dataSource={bodycompositionrecords} rowKey="id"   scroll={{ x: 1500, /* y: 300 */ }}/>
       </div>
     </div>

@@ -5,7 +5,6 @@
 import React from 'react';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { Card, Typography, Alert, Button } from 'antd';
-import { history } from 'umi';
 
 import styles from './Welcome.less';
 
@@ -23,7 +22,6 @@ const CodePreview: React.FC<{}> = ({ children }) => (
 export default (): React.ReactNode => (
   <PageHeaderWrapper>
     <Card>
-      <Button type="primary" onClick={() => history.push('/generate-report')}>生成报告</Button>
       <BodyCompositionRecordsTable />
     </Card>
 {/*     <Card>
