@@ -3,7 +3,7 @@
 */
 
 import React from 'react';
-import { connect } from 'umi';
+import { connect, Dispatch } from 'umi';
 import { Table, Typography } from 'antd';
 
 const { Title, Paragraph } = Typography;
@@ -88,7 +88,7 @@ const columns1 = [
     },
 ]; */
 
-const AnalysisOfHumanComposition: React.FC = ({ dispatch, singlerecords }: any) => {
+const AnalysisOfHumanComposition = ({ dispatch, singlerecords }: { dispatch: Dispatch, singlerecords: SingleRecords }) => {
   const {
     TBW,
     Lower_Limit_TBW,
@@ -175,6 +175,6 @@ const AnalysisOfHumanComposition: React.FC = ({ dispatch, singlerecords }: any) 
   );
 }
 
-export default connect(({ singlerecords }: { singlerecords: any }) => ({
+export default connect(({ singlerecords }: { singlerecords: SingleRecords }) => ({
   singlerecords,
 }))(AnalysisOfHumanComposition);

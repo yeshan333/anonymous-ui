@@ -7,6 +7,7 @@ declare interface SingleRecords {
 
     /* 测试记录字段 */
     ID: number,
+    IDCard: number,
     Height: number,
     Gender: string,
     Age: number,

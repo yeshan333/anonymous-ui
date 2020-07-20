@@ -464,7 +464,7 @@ const xxstate = [
         hipshot: "66666",                       // 臀
         PrePregnancy_Weight: "66666",           //  孕前体重
     }
-]
+];
 
 export default {
     namespace: 'bodycompositionrecords',
@@ -491,7 +491,7 @@ export default {
         },
         *deleteRecord({ payload }: any, { call, put }: any) {
             const response = yield call(deleteRecordForce, payload);
-            // console.log("删除", response);
+            console.log("删除", response);
             yield put({
                 type: 'getRecords',
             });
@@ -501,7 +501,7 @@ export default {
     // TODO: 消息订阅
     subscriptions: {
         setup({ dispatch, history }: any) {
-            history.listen(({ pathname }) => {
+            history.listen(({ pathname }: any) => {
                 if (pathname === '/welcome') {
                     dispatch({
                         type: 'getRecords',

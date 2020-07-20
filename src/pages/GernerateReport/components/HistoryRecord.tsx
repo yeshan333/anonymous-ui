@@ -2,13 +2,13 @@
   * 人体成分测试历史记录表
 */
 
-import React, { useEffect } from 'react';
-import { connect } from 'umi';
+import React from 'react';
+import { connect, Dispatch } from 'umi';
 import { Typography, Row, Col } from 'antd';
 
 const { Title, Paragraph } = Typography;
 
-const HistoryRecord = ({ dispathc, singlerecords }: any) => {
+const HistoryRecord = ({ dispatch, singlerecords }: { dispatch: Dispatch, singlerecords: SingleRecords }) => {
     return (
         <Typography>
             <Title level={4}>人体成分测试历史记录</Title>
@@ -38,6 +38,6 @@ const HistoryRecord = ({ dispathc, singlerecords }: any) => {
     );
 }
 
-export default connect(({ singlerecords }: { singlerecords: any }) => ({
+export default connect(({ singlerecords }: { singlerecords: SingleRecords }) => ({
     singlerecords,
 }))(HistoryRecord);

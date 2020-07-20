@@ -1,6 +1,10 @@
+/*
+  * 用户管理逻辑
+*/
+
 import { Effect, Reducer } from 'umi';
 
-import { deleteUserForce, queryCurrent, addNewUser, query as queryUsers } from '@/services/user';
+import { deleteUserForce, addNewUser, query as queryUsers } from '@/services/user';
 
 export interface CurrentUser {
   avatar?: string;
@@ -97,10 +101,14 @@ const UserModel: UserModelType = {
 
   reducers: {
     add(state, action) {
-      return {
-        ...state,
-        userlist: [action.payload, ...state.userlist]
+      let result = {};
+      if (state !== undefined) {
+        result = {
+          ...state,
+          userlist: [action.payload, ...state.userlist]
+        };
       }
+      return result;
     },
     save(state, action) {
       return {
@@ -139,7 +147,7 @@ const UserModel: UserModelType = {
 
   subscriptions: {
     setup({ dispatch, history }: any) {
-      history.listen(({ pathname }) => {
+      history.listen(({ pathname }: any) => {
         if (pathname === '/admin/user-management') {
           dispatch({
             type: 'fetch',

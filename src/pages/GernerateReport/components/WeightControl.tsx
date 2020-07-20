@@ -3,12 +3,12 @@
 */
 
 import React from 'react';
-import { connect } from 'umi';
+import { connect, Dispatch } from 'umi';
 import { Typography, Col, Row } from 'antd';
 
 const { Title, Paragraph } = Typography;
 
-const WeightControlTable = ({ dispatch, singlerecords }: any) => {
+const WeightControlTable = ({ dispatch, singlerecords }: { dispatch: Dispatch, singlerecords: SingleRecords}) => {
 
   const {
     Target_Weight,                // 目标体重
@@ -42,6 +42,6 @@ const WeightControlTable = ({ dispatch, singlerecords }: any) => {
   );
 };
 
-export default connect(({ singlerecords }: { singlerecords: any }) => ({
+export default connect(({ singlerecords }: { singlerecords: SingleRecords }) => ({
   singlerecords,
 }))(WeightControlTable);

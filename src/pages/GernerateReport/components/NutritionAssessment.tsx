@@ -3,12 +3,12 @@
 */
 
 import React, { useEffect } from 'react';
-import { connect } from 'umi';
+import { connect, Dispatch } from 'umi';
 import { Typography, Row, Col, Radio } from 'antd';
 
 const { Title, Paragraph } = Typography;
 
-const dataSource = [
+/* const dataSource = [
   {
     key: '1',
     id: '1',
@@ -40,8 +40,11 @@ const columns = [
     align: 'center' as 'center',
     render: (text: any) => <p>{text} 正常/缺乏/过量</p>
   },
-];
+]; */
 
+/*
+  * bar 选择器
+*/
 const Judger = ({ value, lower, upper }: any) => {
   const [select, setSelect] = React.useState(0);
 
@@ -58,7 +61,7 @@ const Judger = ({ value, lower, upper }: any) => {
   });
 
   const onChange = (e: any) => {
-    console.log('radio checked', e.target.value);
+    // console.log('radio checked', e.target.value);
     setSelect(e.target.value);
   };
 
@@ -71,7 +74,7 @@ const Judger = ({ value, lower, upper }: any) => {
   );
 }
 
-const NutritionAssessmentTable = ({ dispatch, singlerecords }: any) => {
+const NutritionAssessmentTable = ({ dispatch, singlerecords }: { dispatch: Dispatch, singlerecords: SingleRecords }) => {
   const {
     Protein,                      // 蛋白质
     Lower_Limit_Protein,
@@ -107,6 +110,6 @@ const NutritionAssessmentTable = ({ dispatch, singlerecords }: any) => {
   );
 };
 
-export default connect(({ singlerecords }: { singlerecords: any }) => ({
+export default connect(({ singlerecords }: { singlerecords: SingleRecords }) => ({
   singlerecords,
 }))(NutritionAssessmentTable);

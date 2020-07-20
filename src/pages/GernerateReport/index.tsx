@@ -4,16 +4,16 @@
 
 // import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import React, { useState, useEffect } from 'react';
-import { Spin, Table, Card, Row, Col, Divider } from 'antd';
+import { Spin, Card, Row, Col, Divider } from 'antd';
 import CalculateScore from './components/CalculateScore';
 import WeightControlTable from './components/WeightControl';
 import NutritionAssessmentTable from './components/NutritionAssessment';
 import EstimateOverweight from './components/EstimateOverweight';
-import ObesityAnalysis from './components/ObesityAnalysis';
+// import ObesityAnalysis from './components/ObesityAnalysis';
 import MuscleBalance from './components/MuscleBalance';
 
 import PeopleInfo from './components/PeopleInfo';
-import Tester from './components/Tester';
+// import Tester from './components/Tester';
 import AnalysisOfHumanComposition from './components/AnalysisOfHumanComposition';
 // import styles from './index.less';
 import ResearchProject from './components/ResearchProject';
@@ -32,11 +32,13 @@ export default () => {
   }, []);
   return (
     <>
-      {/*       <PageHeaderWrapper>
+      {/*
+      <PageHeaderWrapper>
         <div style={{ textAlign: 'center' as 'center' }}>
           <Spin spinning={loading} size="large" />
         </div>
-      </PageHeaderWrapper> */}
+      </PageHeaderWrapper>
+      */}
       <div style={{ textAlign: 'center' as 'center' }}>
         <Spin spinning={loading} size="large" />
       </div>

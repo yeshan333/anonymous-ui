@@ -4,14 +4,14 @@
 */
 
 import React from 'react';
-import { connect } from 'umi';
+import { connect, Dispatch } from 'umi';
 import { Statistic, Row, Col } from 'antd';
 import { LikeOutlined } from '@ant-design/icons';
 import { Typography, Divider } from 'antd';
 
 const { Title, Paragraph } = Typography;
 
-const CalculateScore: React.FC<{}> = ({ dispatch, singlerecords }: any) => {
+const CalculateScore = ({ dispatch, singlerecords }: { dispatch: Dispatch, singlerecords: SingleRecords }) => {
 
     const { Inbody_Score } = singlerecords;
     const [ level, setLevel ] = React.useState('不合格');
@@ -48,7 +48,7 @@ const CalculateScore: React.FC<{}> = ({ dispatch, singlerecords }: any) => {
     );
 }
 
-export default connect(({ singlerecords }: { singlerecords: any }) => ({
+export default connect(({ singlerecords }: { singlerecords: SingleRecords }) => ({
     singlerecords,
 }))(CalculateScore);
 

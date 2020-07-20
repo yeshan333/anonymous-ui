@@ -2,14 +2,14 @@
   * 生物电阻抗表组件
 */
 
-import React, { useEffect } from 'react';
-import { connect } from 'umi';
+import React from 'react';
+import { connect, Dispatch } from 'umi';
 import { Typography, Row, Col } from 'antd';
 
 const { Title, Paragraph } = Typography;
 
 
-const BioelectricalImpedance = ({dispathc, singlerecords}: any) => {
+const BioelectricalImpedance = ({dispatch, singlerecords}: {dispatch: Dispatch, singlerecords: SingleRecords}) => {
     const {
         RA_5K,                        // 右上肢5K时电阻抗
         LA_5K,		                  // 左上肢5K时电阻抗
@@ -70,6 +70,6 @@ const BioelectricalImpedance = ({dispathc, singlerecords}: any) => {
     );
 }
 
-export default connect(({ singlerecords }: { singlerecords: any }) => ({
+export default connect(({ singlerecords }: { singlerecords: SingleRecords }) => ({
     singlerecords,
   }))(BioelectricalImpedance);

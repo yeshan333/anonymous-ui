@@ -8,7 +8,7 @@ import { Row, Col, Typography } from 'antd';
 
 const { Title, Paragraph } = Typography;
 
-const data = {
+/* const data = {
   ICW: '24.6',
   ECW: '14.3',
   SMM: '29.9',
@@ -19,9 +19,9 @@ const data = {
   Upper_Limit_SMM: '29.4',
   Lower_Limit_ECW: '12.2',
   Upper_Limit_ECW: '14.9',
-}
+} */
 
-const ResearchProject: React.FC = ({dispathc, singlerecords}: any) => {
+const ResearchProject: React.FC = ({ dispathc, singlerecords }: any) => {
   const {
     ICW,
     Lower_Limit_ICW,

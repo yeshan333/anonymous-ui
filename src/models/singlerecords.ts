@@ -181,7 +181,7 @@ export default {
     // TODO: 消息订阅
     subscriptions: {
             setup({ dispatch, history }: any) {
-                history.listen(({ pathname }) => {
+                history.listen(({ pathname }: any) => {
                     if (pathname === '/generate-report') {
                         dispatch({
                             type: 'getRecords',

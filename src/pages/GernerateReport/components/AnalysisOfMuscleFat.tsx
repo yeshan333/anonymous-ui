@@ -3,7 +3,7 @@
 */
 
 import React from 'react';
-import { connect } from 'umi';
+import { connect, Dispatch } from 'umi';
 import { Table, Progress, Typography } from 'antd';
 
 const { Title, Paragraph } = Typography;
@@ -14,7 +14,7 @@ const { Title, Paragraph } = Typography;
   * lower：下界
   * upper：上界
 */
-const calculateBarValue = (value, lower, upper) => {
+const calculateBarValue = (value: any, lower: any, upper: any) => {
 
   let normal_interval_size = upper - lower;  // 正常区间大小
   if (value < lower) {
@@ -28,11 +28,10 @@ const calculateBarValue = (value, lower, upper) => {
   } else {
     return 0;
   }
-
 }
 
 
-const renderContent = (value, row, index) => {
+const renderContent = (value: any, row: any, index: any) => {
   const obj = {
     children: value,
     props: {},
@@ -52,7 +51,7 @@ const columns = [
     title: '低于标准',
     dataIndex: 'value',
     width: 150,
-    render: (text, row, index) => {
+    render: (text: any, row: any, index: any) => {
       return {
         children: <Progress percent={text} showInfo={false} status="active" strokeColor="#52c41a" />,
         props: {
@@ -80,7 +79,7 @@ const columns = [
   },
 ];
 
-const AnalysisOfMuscleFat = ({dispatch, singlerecords}: {dispatch: any, singlerecords: SingleRecords}) => {
+const AnalysisOfMuscleFat = ({dispatch, singlerecords}: {dispatch: Dispatch, singlerecords: SingleRecords}) => {
     const {
         Weight,
         Upper_Limit_Weight,
@@ -124,6 +123,6 @@ const AnalysisOfMuscleFat = ({dispatch, singlerecords}: {dispatch: any, singlere
   );
 }
 
-export default connect(({ singlerecords }: { singlerecords: any }) => ({
+export default connect(({ singlerecords }: { singlerecords: SingleRecords }) => ({
     singlerecords,
   }))(AnalysisOfMuscleFat);

@@ -3,7 +3,7 @@
 */
 
 import React from 'react';
-import { connect } from 'umi';
+import { connect, Dispatch } from 'umi';
 import { Progress, Typography, Row, Col } from 'antd';
 
 const { Title, Paragraph } = Typography;
@@ -14,7 +14,7 @@ const { Title, Paragraph } = Typography;
   * lower：下界
   * upper：上界
 */
-const calculateBarValue = (value, lower, upper) => {
+const calculateBarValue = (value: any, lower: any, upper: any) => {
 
   let normal_interval_size = upper - lower;  // 正常区间大小
   if (value < lower) {
@@ -30,7 +30,7 @@ const calculateBarValue = (value, lower, upper) => {
   }
 }
 
-const AnalysisOfSegmentalFat = ({dispatch, singlerecords}: {dispatch: any, singlerecords: SingleRecords}) => {
+const AnalysisOfSegmentalFat = ({dispatch, singlerecords}: {dispatch: Dispatch, singlerecords: SingleRecords}) => {
 
   const {
       BFM_of_Left_Leg,
@@ -109,6 +109,6 @@ const AnalysisOfSegmentalFat = ({dispatch, singlerecords}: {dispatch: any, singl
 }
 
 
-export default connect(({ singlerecords }: { singlerecords: any }) => ({
+export default connect(({ singlerecords }: { singlerecords: SingleRecords }) => ({
     singlerecords,
   }))(AnalysisOfSegmentalFat);

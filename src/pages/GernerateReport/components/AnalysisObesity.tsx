@@ -3,7 +3,7 @@
 */
 
 import React from 'react';
-import { connect } from 'umi';
+import { connect, Dispatch } from 'umi';
 import { Table, Progress, Typography } from 'antd';
 
 const { Title, Paragraph } = Typography;
@@ -14,7 +14,7 @@ const { Title, Paragraph } = Typography;
   * lower：下界
   * upper：上界
 */
-const calculateBarValue = (value, lower, upper) => {
+const calculateBarValue = (value: any, lower: any, upper: any) => {
 
   let normal_interval_size = upper - lower;  // 正常区间大小
   if (value < lower) {
@@ -31,7 +31,7 @@ const calculateBarValue = (value, lower, upper) => {
 }
 
 
-const renderContent = (value, row, index) => {
+const renderContent = (value: any, row: any, index: any) => {
   const obj = {
     children: value,
     props: {},
@@ -51,7 +51,7 @@ const columns = [
     title: '低于标准',
     dataIndex: 'value',
     width: 150,
-    render: (text, row, index) => {
+    render: (text: any, row: any, index: any) => {
       return {
         children: <Progress percent={text} showInfo={false}  status="active" strokeColor="#f47920" />,
         props: {
@@ -79,7 +79,7 @@ const columns = [
   },
 ];
 
-const AnalysisObesity = ({dispatch, singlerecords}: any) => {
+const AnalysisObesity = ({dispatch, singlerecords}: { dispatch: Dispatch, singlerecords: SingleRecords }) => {
     const {
         BMI,
         Lower_Limit_BMI,
@@ -123,6 +123,6 @@ const AnalysisObesity = ({dispatch, singlerecords}: any) => {
   );
 }
 
-export default connect(({ singlerecords }: { singlerecords: any }) => ({
+export default connect(({ singlerecords }: { singlerecords: SingleRecords }) => ({
     singlerecords,
   }))(AnalysisObesity);

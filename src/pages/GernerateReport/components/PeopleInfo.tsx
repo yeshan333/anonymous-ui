@@ -3,9 +3,9 @@
 */
 
 import React from 'react';
-import { connect } from 'umi';
+import { connect, Dispatch } from 'umi';
 import { Table, Alert } from 'antd';
-
+/*
 const dataSource = [
     {
         key: 1,  // 必须的
@@ -16,7 +16,7 @@ const dataSource = [
         Gender: 'male',
         DateTime: '2020-02-02 08:08:08',
     },
-];
+]; */
 
 const columns = [
     {
@@ -58,7 +58,7 @@ const columns = [
     },
 ];
 
-const PeopleInfo = ({ dispatch, singlerecords }: any) => {
+const PeopleInfo = ({ dispatch, singlerecords }: {dispatch: Dispatch, singlerecords: SingleRecords}) => {
     const {
         IDCard,
         Age,
@@ -93,6 +93,6 @@ const PeopleInfo = ({ dispatch, singlerecords }: any) => {
     );
 }
 
-export default connect(({ singlerecords }: { singlerecords: any }) => ({
+export default connect(({ singlerecords }: { singlerecords: SingleRecords }) => ({
     singlerecords,
 }))(PeopleInfo);
