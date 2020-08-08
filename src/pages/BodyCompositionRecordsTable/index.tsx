@@ -4,11 +4,14 @@
 
 import React from "react";
 import { connect, history } from 'umi';
-import styles from "./index.less";
-import { Table, Button } from "antd";
+import { PageLoading } from '@ant-design/pro-layout';
+
+import { Table, Button, Popconfirm } from "antd";
 import { DeleteFilled, AreaChartOutlined } from '@ant-design/icons';
 
 import DownloadCSV from './components/DownloadCSV';
+
+import styles from "./index.less";
 
 // 测试记录项类型定义
 interface Item {
@@ -166,7 +169,7 @@ interface Item {
   PrePregnancy_Weight: number,           //  孕前体重
 }
 
-const BodyCompositionRecordsTable = ({ dispatch, bodycompositionrecords }: any) => {
+const BodyCompositionRecordsTable = ({ dispatch, bodycompositionrecords, loading }: any) => {
 
   const columns = [
     {
@@ -847,21 +850,26 @@ const BodyCompositionRecordsTable = ({ dispatch, bodycompositionrecords }: any) 
       key: "operation",
       fixed: "right" as "right",
       width: 100,
-      render: (_: any, record: Item) => <Button danger onClick={() => dispatch({ type: 'bodycompositionrecords/deleteRecord', payload: record.id })}><DeleteFilled /></Button>
+      render: (_: any, record: Item) => (
+        <Popconfirm placement="top" title={"确定删除？"} onConfirm={() => dispatch({ type: 'bodycompositionrecords/deleteRecord', payload: record.id })} okText="Yes" cancelText="No">
+          <Button danger><DeleteFilled /></Button>
+        </Popconfirm>
+      )
     }
   ];
 
-  return (
+  return loading ? (<PageLoading />) : (
     <div className={styles.container}>
       <div id="components-table-demo-fixed-columns-header">
         <Button
           type="primary"
           onClick={() => history.push('/generate-report')}
           icon={<AreaChartOutlined />}>
-            生成报告
+          生成报告
         </Button>
+        &ensp;
         <DownloadCSV />
-        <Table columns={columns} dataSource={bodycompositionrecords} rowKey="id"   scroll={{ x: 1500, /* y: 300 */ }}/>
+        <Table columns={columns} dataSource={bodycompositionrecords} rowKey="id" scroll={{ x: 1500, /* y: 300 */ }} />
       </div>
     </div>
   );
@@ -871,6 +879,7 @@ const BodyCompositionRecordsTable = ({ dispatch, bodycompositionrecords }: any) 
   * bodycompositionrecords: 人体成分记录
 */
 
-export default connect(({ bodycompositionrecords }: { bodycompositionrecords: any }) => ({
+export default connect(({ bodycompositionrecords, loading }: { bodycompositionrecords: any, loading: ConnectState }) => ({
   bodycompositionrecords,
+  loading: loading.models.bodycompositionrecords,
 }))(BodyCompositionRecordsTable);

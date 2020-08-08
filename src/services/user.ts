@@ -42,7 +42,7 @@ export async function deleteUserForce(user: any): Promise<any> {
   // console.log("正在删除用户", user)
   return request('http://47.92.4.141:8080/api/admin/deleteUser',{
       method: 'post',
-      data: user,
+      data: user.id,
       headers: {
         Authorization: token
       }

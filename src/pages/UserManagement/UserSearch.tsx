@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'umi';
-import { Table, Input, Button, Space, Modal, Tag, Tooltip } from 'antd';
-import { PlusOutlined, AreaChartOutlined, DeleteOutlined, DownloadOutlined } from '@ant-design/icons';
+import { PageLoading } from '@ant-design/pro-layout';
+import { Table, Input, Button, Space, Modal, Tag, Tooltip, Popconfirm } from 'antd';
+import { AreaChartOutlined, DeleteOutlined, DownloadOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
-
 
 import AddNewUser from './components/AddNewUser';
 import SomeoneRecordsTable from './components/GetSomeoneRecords';
@@ -127,6 +127,7 @@ class App extends React.Component {
     this.setState({ searchText: '' });
   };
 
+  // 删除用户
   clickDelete = (record: any) => {
     this.props.dispatch({ // TODO: 错误提示？？？
       type: 'user/deleteUser',
@@ -178,7 +179,7 @@ class App extends React.Component {
                   }}
                   icon={<AreaChartOutlined />}
                 >
-                    data
+                  data
                 </Button>
               </Tooltip>
               <Modal
@@ -191,15 +192,17 @@ class App extends React.Component {
                 <SomeoneRecordsTable />
               </Modal>
               <Tooltip placement="top" title={"删除用户"}>
-                <Button
-                  style={{ marginLeft: 5 }}
-                  type="primary"
-                  danger
-                  icon={<DeleteOutlined />}
-                  onClick={() => this.clickDelete(record)}
-                >
-                </Button>
+                <Popconfirm placement="top" title={"确定删除用户？"} onConfirm={() => this.clickDelete(record)} okText="Yes" cancelText="No">
+                  <Button
+                    style={{ marginLeft: 5 }}
+                    type="primary"
+                    danger
+                    icon={<DeleteOutlined />}
+                    // onClick={() => this.clickDelete(record)}
+                  />
+                </Popconfirm>
               </Tooltip>
+              {/*
               <Tooltip placement="top" title={"导出用户数据"}>
                 <Button
                   icon={<DownloadOutlined />}
@@ -208,12 +211,13 @@ class App extends React.Component {
                 >
                 </Button>
               </Tooltip>
+              */}
             </>
           );
         }
       },
     ];
-    return (
+    return this.props.loading ? (<PageLoading />) : (
       <>
         <AddNewUser />
         <Table columns={columns} dataSource={this.props.userlist} bordered rowKey="id" />
@@ -222,6 +226,7 @@ class App extends React.Component {
   }
 }
 
-export default connect(({ user }: { user: any }) => ({
+export default connect(({ user, loading }: { user: any, loading: any }) => ({
   userlist: user.userlist,
+  loading: loading.models.user,
 }))(App);
