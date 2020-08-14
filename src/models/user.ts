@@ -60,7 +60,7 @@ const UserModel: UserModelType = {
   effects: {
     *fetch(_, { call, put }) {
       const response = yield call(queryUsers);
-      console.log("所有用户的信息: ", response)
+      // console.log("所有用户的信息: ", response)
       yield put({
         type: 'save',
         payload: response,
@@ -70,7 +70,12 @@ const UserModel: UserModelType = {
     *fetchCurrent(_, { call, put }) {
       // const response = yield call(queryCurrent);
       const response = yield localStorage.getItem("xxx");
-      console.log("获取用户信息: ", response);
+      // console.log("获取用户信息: ", response);
+      // console.log("Token",JSON.parse(response).Token)
+      if(JSON.parse(response) == "统一处理，原因：token超时了") {
+        localStorage.removeItem("xxx");
+        window.location.href = window.location.origin + "/user/login"
+      }
       yield put({
         type: 'saveCurrentUser',
         payload: JSON.parse(response), // TODO: 反序列化

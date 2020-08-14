@@ -8,10 +8,11 @@ import { connect, Dispatch } from 'umi';
 import { Statistic, Row, Col } from 'antd';
 import { LikeOutlined } from '@ant-design/icons';
 import { Typography, Divider } from 'antd';
+import { PageLoading } from '@ant-design/pro-layout';
 
 const { Title, Paragraph } = Typography;
 
-const CalculateScore = ({ dispatch, singlerecords }: { dispatch: Dispatch, singlerecords: SingleRecords }) => {
+const CalculateScore = ({ dispatch, singlerecords, loading }: { dispatch: Dispatch, singlerecords: SingleRecords, loading: any }) => {
 
     const { Inbody_Score } = singlerecords;
     const [ level, setLevel ] = React.useState('不合格');
@@ -28,11 +29,11 @@ const CalculateScore = ({ dispatch, singlerecords }: { dispatch: Dispatch, singl
         }
     });
 
-    return (
+    return loading ? <PageLoading /> : (
         <Typography>
             <Title level={3} style={{ textAlign: 'center' }}>
                 健康评分
-        </Title>
+            </Title>
             <Paragraph>
                 <Row>
                     <Col span={12} style={{ textAlign: 'center' }}>
@@ -48,7 +49,8 @@ const CalculateScore = ({ dispatch, singlerecords }: { dispatch: Dispatch, singl
     );
 }
 
-export default connect(({ singlerecords }: { singlerecords: SingleRecords }) => ({
+export default connect(({ singlerecords, loading }: { singlerecords: SingleRecords, loading: any }) => ({
     singlerecords,
+    loading: loading.models.singlerecords,
 }))(CalculateScore);
 

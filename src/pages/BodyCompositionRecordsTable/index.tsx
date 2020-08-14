@@ -879,7 +879,7 @@ const BodyCompositionRecordsTable = ({ dispatch, bodycompositionrecords, loading
   * bodycompositionrecords: 人体成分记录
 */
 
-export default connect(({ bodycompositionrecords, loading }: { bodycompositionrecords: any, loading: ConnectState }) => ({
+export default connect(({ bodycompositionrecords, loading }: { bodycompositionrecords: any, loading: any }) => ({
   bodycompositionrecords,
   loading: loading.models.bodycompositionrecords,
 }))(BodyCompositionRecordsTable);
