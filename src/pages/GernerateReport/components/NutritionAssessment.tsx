@@ -2,13 +2,13 @@
   * 营养评估表组件
 */
 
-import React, { useEffect } from 'react';
-import { connect, Dispatch } from 'umi';
+import React from 'react';
+import { connect } from 'umi';
 import { Typography, Row, Col, Radio } from 'antd';
 
 const { Title, Paragraph } = Typography;
 
-/* const dataSource = [
+const dataSource = [
   {
     key: '1',
     id: '1',
@@ -40,33 +40,27 @@ const columns = [
     align: 'center' as 'center',
     render: (text: any) => <p>{text} 正常/缺乏/过量</p>
   },
-]; */
+];
 
-/*
-  * bar 选择器
-*/
-const Judger = ({ value, lower, upper }: any) => {
-  const [select, setSelect] = React.useState(0);
+const calculateValueX = (value: any, lower: any, upper: any) => {
+  let r_value = parseFloat(value);
+  let r_lower = parseFloat(lower);
+  let r_upper = parseFloat(upper);
+  if( r_value > r_lower && r_value < r_upper) {
+    return 1;
+  }
+  if(r_value < r_lower){
+    return 2;
+  }
+  if(r_value > r_upper){
+    return 3;
+  }
+  return 0;
+}
 
-  useEffect(() => {
-    if( value >= lower && value <= upper) {
-      setSelect(1);
-    }else if(value < lower){
-      setSelect(2);
-    }else if(value > upper){
-      setSelect(3);
-    }else{
-      setSelect(0);
-    }
-  });
-
-  const onChange = (e: any) => {
-    // console.log('radio checked', e.target.value);
-    setSelect(e.target.value);
-  };
-
+const Judger = (props: any) => {
   return (
-    <Radio.Group onChange={(e) => onChange(e)} value={select}>
+    <Radio.Group value={props.select}>
       <Radio value={1}>正常</Radio>
       <Radio value={2}>缺乏</Radio>
       <Radio value={3}>过量</Radio>
@@ -74,7 +68,7 @@ const Judger = ({ value, lower, upper }: any) => {
   );
 }
 
-const NutritionAssessmentTable = ({ dispatch, singlerecords }: { dispatch: Dispatch, singlerecords: SingleRecords }) => {
+const NutritionAssessmentTable = ({ dispatch, singlerecords }: any) => {
   const {
     Protein,                      // 蛋白质
     Lower_Limit_Protein,
@@ -95,21 +89,21 @@ const NutritionAssessmentTable = ({ dispatch, singlerecords }: { dispatch: Dispa
       <Paragraph>
         <Row>
           <Col span={10}>蛋白质</Col>
-          <Col span={14}><Judger lower={Lower_Limit_Protein} value={Protein} upper={Upper_Limit_Protein} /></Col>
+          <Col span={14}><Judger select={calculateValueX(Protein, Lower_Limit_Protein, Upper_Limit_Protein)} /></Col>
         </Row>
         <Row>
           <Col span={10}>无机盐</Col>
-          <Col span={14}><Judger lower={Lower_Limit_Mineral} value={Mineral} upper={Upper_Limit_Mineral} /></Col>
+          <Col span={14}><Judger select={calculateValueX(Mineral, Lower_Limit_Mineral, Upper_Limit_Mineral)} /></Col>
         </Row>
         <Row>
           <Col span={10}>体脂肪</Col>
-          <Col span={14}><Judger lower={Lower_Limit_BFM} value={BFM} upper={Upper_Limit_BFM} /></Col>
+          <Col span={14}><Judger select={calculateValueX(BFM, Lower_Limit_BFM, Upper_Limit_BFM)} /></Col>
         </Row>
       </Paragraph>
     </Typography>
   );
 };
 
-export default connect(({ singlerecords }: { singlerecords: SingleRecords }) => ({
+export default connect(({ singlerecords }: { singlerecords: any }) => ({
   singlerecords,
 }))(NutritionAssessmentTable);

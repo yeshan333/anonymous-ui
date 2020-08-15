@@ -89,7 +89,7 @@ const EstimateOverweight = ({ dispatch, singlerecords }: { dispatch: Dispatch, s
       <Paragraph>
         <Row>
           <Col span={12} style={{ textAlign: 'center' }}>
-            <p>BIM</p>
+            <p>BMI</p>
             <BIM value={BMI} lower={Lower_Limit_BMI} upper={Upper_Limit_BMI} />
           </Col>
           <Col span={12} style={{ textAlign: 'center' }}>
