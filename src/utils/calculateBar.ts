@@ -13,7 +13,7 @@ const calculateBarValue = (value: any, lower: any, upper: any) => {
     if (value < lower) {
         return (value / lower) * 33;
     } else if (value > upper) {
-        return 66 + 33 * (value) / (100 - upper);
+        return 66 + 33 * value / (100 - upper);
     } else if (lower < value && value < upper) {
         return 33 + 33 * (value - lower) / normal_interval_size;
     } else if (value > 100) {
